@@ -10,7 +10,7 @@ class HechoFactory {
         try {
             IHecho nuevoHecho;
             Class clase = f.getClass();
-            if (clase.equals(Class.forName("sistemaexperto.HechoEntero"))) {
+            if (clase.equals(Class.forName("com.hg.inteligenciaartificial.aplicacion.sistemaexperto.HechoEntero"))) {
                 nuevoHecho = CrearHechoEntero(f, m);
             }
             else {
