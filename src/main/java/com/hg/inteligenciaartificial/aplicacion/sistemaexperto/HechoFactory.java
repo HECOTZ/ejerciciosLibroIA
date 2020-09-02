@@ -3,7 +3,7 @@ package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// Clase que permtite crear los hechos, independientemente de su tipo
+// Clase que permite crear los hechos, independientemente de su tipo
 class HechoFactory {
     // Crea un nuevo hecho rellenando el valor dado por el usuario
     static IHecho Hecho(IHecho f, MotorInferencias m) {
