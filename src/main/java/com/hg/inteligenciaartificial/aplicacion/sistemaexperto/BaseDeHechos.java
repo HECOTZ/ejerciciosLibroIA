@@ -6,16 +6,17 @@ import java.util.List;
 // Clase que gestiona la base de hechos
 class BaseDeHechos {
     // Lista de los hechos
-    protected List<IHecho> hechos; 
+    protected List<IHecho> hechos;
+
+    // Constructor
+    public BaseDeHechos() { 
+        hechos = new ArrayList<>(); 
+    }
+    
     public List<IHecho> getHechos() { 
         return hechos; 
     } 
   
-    // Constructor
-    public BaseDeHechos() { 
-        hechos = new ArrayList<>(); 
-    } 
-
     // Vaciar la base
     public void vaciar() {
         hechos.clear();

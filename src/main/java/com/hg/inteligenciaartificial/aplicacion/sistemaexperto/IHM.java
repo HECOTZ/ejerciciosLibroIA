@@ -1,10 +1,10 @@
 package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IHM {
     int pedirValorEntero(String pregunta); 
     boolean pedirValorBooleano(String pregunta); 
-    void mostrarHechos(ArrayList<IHecho> hechos); 
-    void mostrarReglas(ArrayList<Regla> reglas); 
+    void mostrarHechos(List<IHecho> hechos); 
+    void mostrarReglas(List<Regla> reglas); 
 }

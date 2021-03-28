@@ -3,8 +3,8 @@ package com.hg.inteligenciaartificial.aplicacion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import com.hg.inteligenciaartificial.aplicacion.sistemaexperto.Regla;
 
 public class Aplicacion implements IHM {
 	
-	Logger logger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
     public static void main(String[] args) {
         Aplicacion app = new Aplicacion();
@@ -79,7 +79,7 @@ public class Aplicacion implements IHM {
     }
 
     // Muestra la lista de hechos de nivel >0 y por orden decreciente de nivel
-    public void mostrarHechos(ArrayList<IHecho> hechos) {
+    public void mostrarHechos(List<IHecho> hechos) {
         StringBuilder res = new StringBuilder("Solución(es) encontrada(s) : \n"); 
         Collections.sort(hechos,(IHecho hecho1, IHecho hecho2) -> 
              Integer.compare(hecho2.getNivel(), hecho1.getNivel())
@@ -94,7 +94,7 @@ public class Aplicacion implements IHM {
     }
 
     // Muestra las reglas contenidas en la base
-    public void mostrarReglas(ArrayList<Regla> reglas) {
+    public void mostrarReglas(List<Regla> reglas) {
     	StringBuilder res = new StringBuilder("");
         for(Regla regla : reglas) {
             res.append(regla.toString()).append("\n");

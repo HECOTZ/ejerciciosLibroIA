@@ -4,38 +4,40 @@ package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 class HechoEntero implements IHecho {
 
     // Nombre del hecho
-    protected String nombre;    
+    protected String nombre;
+    // Valor entero asociado
+    protected int valor;
+    // Nivel (0 para los hechos como entrada)
+    protected int nivel;
+    // Pregunta que hay que hacer al usuario si es necesario
+    protected String pregunta = "";
+
+    // Constructor
+    public HechoEntero(String nombre , int valor, String pregunta, int nivel) {
+    	this.nombre = nombre ;
+        this.valor = valor;
+        this.pregunta = pregunta;
+        this.nivel = nivel;
+    }
+    
     public String getNombre() {
         return nombre;
     }
 
-    // Valor entero asociado
-    protected int valor;
     public Object getValor() {
         return valor;
     }
 
-    // Nivel (0 para los hechos como entrada)
-    protected int nivel;
     public int getNivel() {
         return nivel;
     }
+    
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
     
-    // Pregunta que hay que hacer al usuario si es necesario
-    protected String pregunta = "";
     public String getPregunta() {
         return pregunta;
-    }
-
-    // Constructor
-    public HechoEntero(String _nombre , int _valor, String _pregunta, int _nivel) {
-        nombre = _nombre ;
-        valor = _valor;
-        nivel = _nivel;
-        pregunta = _pregunta;
     }
     
     // Métodos toString (para la visualización)
@@ -43,4 +45,5 @@ class HechoEntero implements IHecho {
     public String toString() {
         return nombre + "=" + valor + " (" + nivel + ")";
     }
+    
 }

@@ -1,24 +1,28 @@
 package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // Clase que permite crear los hechos, independientemente de su tipo
 class HechoFactory {
+
+	private static Logger logger = LoggerFactory.getLogger(HechoFactory.class);
+	
     // Crea un nuevo hecho rellenando el valor dado por el usuario
     static IHecho Hecho(IHecho f, MotorInferencias m) {
         try {
             IHecho nuevoHecho;
             Class clase = f.getClass();
-            if (clase.equals(Class.forName("com.hg.inteligenciaartificial.aplicacion.sistemaexperto.HechoEntero"))) {
+            if(clase.equals(Class.forName("com.hg.inteligenciaartificial.aplicacion.sistemaexperto.HechoEntero"))) {
                 nuevoHecho = CrearHechoEntero(f, m);
-            }
-            else {
+            } else {
                 nuevoHecho = CrearHechoBooleen(f, m);
             }
             return nuevoHecho;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(HechoFactory.class.getName()).log(Level.SEVERE, null, ex);
+        	logger.error("Error Hecho", ex);
             return null;
         }
     }

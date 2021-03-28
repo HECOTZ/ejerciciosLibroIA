@@ -7,6 +7,12 @@ import java.util.List;
 class BaseDeReglas {
     // Lista de las reglas
     protected List<Regla> reglas;
+    
+ // Constructor
+    public BaseDeReglas() { 
+        reglas = new ArrayList<>(); 
+    } 
+    
     public List<Regla> getReglas() {
        return reglas;
     }
@@ -18,11 +24,6 @@ class BaseDeReglas {
         }
     }
    
-    // Constructor
-    public BaseDeReglas() { 
-        reglas = new ArrayList<>(); 
-    } 
-
     // Eliminar las reglas
     public void clearBase() { 
         reglas.clear(); 
