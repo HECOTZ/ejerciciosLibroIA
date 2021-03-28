@@ -1,34 +1,35 @@
 package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Clase que gestiona la base de hechos
 class BaseDeHechos {
     // Lista de los hechos
-    protected ArrayList<IHecho> hechos; 
-    public ArrayList<IHecho> getHechos () { 
+    protected List<IHecho> hechos; 
+    public List<IHecho> getHechos() { 
         return hechos; 
     } 
   
     // Constructor
     public BaseDeHechos() { 
-        hechos = new ArrayList(); 
+        hechos = new ArrayList<>(); 
     } 
 
     // Vaciar la base
-    public void Vaciar() {
+    public void vaciar() {
         hechos.clear();
     }
     
     // Agregar un hecho
-    public void AgregarHecho(IHecho hecho) {
+    public void agregarHecho(IHecho hecho) {
         hechos.add(hecho);
     }
     
     // Buscar un hecho a partir de su nomnre, null si no existe
-    public IHecho Buscar(String nombre) {
+    public IHecho buscar(String nombre) {
         for(IHecho hecho : hechos) {
-            if (hecho.Nombre().equals(nombre)) {
+            if(hecho.getNombre().equals(nombre)) {
                 return hecho;
             }
         }
@@ -36,10 +37,10 @@ class BaseDeHechos {
     }
     
     // Busca el valor de un hecho, null si el hecho no existe
-    public Object RecuperarValorHecho(String nombre) {
+    public Object recuperarValorHecho(String nombre) {
         for(IHecho hecho : hechos) {
-            if (hecho.Nombre().equals(nombre)) {
-                return hecho.Valor();
+            if(hecho.getNombre().equals(nombre)) {
+                return hecho.getValor();
             }
         }
         return null;

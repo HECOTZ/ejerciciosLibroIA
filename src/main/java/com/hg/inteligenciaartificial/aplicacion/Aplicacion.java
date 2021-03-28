@@ -6,47 +6,55 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hg.inteligenciaartificial.aplicacion.sistemaexperto.IHM;
 import com.hg.inteligenciaartificial.aplicacion.sistemaexperto.IHecho;
 import com.hg.inteligenciaartificial.aplicacion.sistemaexperto.MotorInferencias;
 import com.hg.inteligenciaartificial.aplicacion.sistemaexperto.Regla;
 
 public class Aplicacion implements IHM {
+	
+	Logger logger = LoggerFactory.getLogger(getClass());
+	
     public static void main(String[] args) {
         Aplicacion app = new Aplicacion();
-        app.Run();
+        app.run();
     }
 
-    // Funcionamiento del programa, con el ejemplo de las polígonos
-    public void Run() {
+    // Funcionamiento del programa, con el ejemplo de los polígonos
+    public void run() {
         // Creación del motor
-        System.out.println("** Creación del motor **");
-        MotorInferencias m = new MotorInferencias(this);
+        logger.info("** Creación del motor... **");
+        MotorInferencias motorInferencia = new MotorInferencias(this);
         
         // Agregar las reglas
-        System.out.println("** Agregar las reglas **");
-        m.AgregarRegla("R1 : IF (Orden=3(¿Cuál es el orden?)) THEN  Triángulo");
-        m.AgregarRegla("R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo");
-        m.AgregarRegla("R3 : IF (Triángulo AND Lados Iguales=2(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Isósceles");
-        m.AgregarRegla("R4 : IF (Triángulo rectángulo AND Triángulo Isósceles) THEN Triángulo Rectángulo Isósceles");
-        m.AgregarRegla("R5 : IF (Triángulo AND Lados Iguales=3(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Equilátero");
-        m.AgregarRegla("R6 : IF (Orden=4(¿Cuál es el orden?)) THEN Cuadrilátero");
-        m.AgregarRegla("R7 : IF (Cuadrilátero AND Lados Paralelos=2(¿Cuántos lados paralelos entre sí - 0, 2 o 4?)) THEN Trapecio");
-        m.AgregarRegla("R8 : IF (Cuadrilátero AND Lados Paralelos=4(¿Cuántos lados paralelos entre sí - 0, 2 o 4?)) THEN Paralelogramo");
-        m.AgregarRegla("R9 : IF (Paralelogramo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Rectángulo");
-        m.AgregarRegla("R10 : IF (Paralelogramo AND Lados Iguales=4(¿Cuántos lados iguales tiene la figura?)) THEN Rombo");
-        m.AgregarRegla("R11 : IF (Rectángulo AND Rombo THEN Cuadrado");
+        logger.info("** Agregar las reglas **");
+        motorInferencia.agregarRegla("R1 : IF (Orden=3(¿Cuál es el orden?)) THEN  Triángulo");
+        motorInferencia.agregarRegla("R2 : IF (Triángulo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Triángulo Rectángulo");
+        motorInferencia.agregarRegla("R3 : IF (Triángulo AND Lados Iguales=2(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Isósceles");
+        motorInferencia.agregarRegla("R4 : IF (Triángulo rectángulo AND Triángulo Isósceles) THEN Triángulo Rectángulo Isósceles");
+        motorInferencia.agregarRegla("R5 : IF (Triángulo AND Lados Iguales=3(¿Cuántos lados iguales tiene la figura?)) THEN Triángulo Equilátero");
+        motorInferencia.agregarRegla("R6 : IF (Orden=4(¿Cuál es el orden?)) THEN Cuadrilátero");
+        motorInferencia.agregarRegla("R7 : IF (Cuadrilátero AND Lados Paralelos=2(¿Cuántos lados paralelos entre sí - 0, 2 o 4?)) THEN Trapecio");
+        motorInferencia.agregarRegla("R8 : IF (Cuadrilátero AND Lados Paralelos=4(¿Cuántos lados paralelos entre sí - 0, 2 o 4?)) THEN Paralelogramo");
+        motorInferencia.agregarRegla("R9 : IF (Paralelogramo AND Ángulo Recto(¿La figura tiene al menos un ángulo recto?)) THEN Rectángulo");
+        motorInferencia.agregarRegla("R10 : IF (Paralelogramo AND Lados Iguales=4(¿Cuántos lados iguales tiene la figura?)) THEN Rombo");
+        motorInferencia.agregarRegla("R11 : IF (Rectángulo AND Rombo THEN Cuadrado");
          
         // Resolución
-        while(true) {
-            System.out.println("\n** Resolución **");
-            m.Resolver();
+        int counter = 0;
+        while(counter < 3) {
+            logger.info("** Resolución **");
+            motorInferencia.resolver();
+            counter++;
         }
     }
     
     // Pide una valor entero al usuario, sin verificaciones (0 en caso de problema)
-    public int PedirValorEntero(String pregunta) {
-        System.out.println(pregunta);
+    public int pedirValorEntero(String pregunta) {
+        logger.info(pregunta);
         try { 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             return Integer.decode(br.readLine()); 
@@ -58,12 +66,12 @@ public class Aplicacion implements IHM {
 
     // Solicita un valor booleano, con sí (verdadero) o no. 
     // Se ignorarn los errores (devuelve falso)
-    public boolean PedirValorBooleano(String pregunta) {
+    public boolean pedirValorBooleano(String pregunta) {
         try {
-            System.out.println(pregunta + " (oui, non)");
+            logger.info("{} (y, n)", pregunta);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String res = br.readLine();
-            return (res.equals("oui"));
+            return (res.equalsIgnoreCase("y"));
         } 
         catch (IOException e) {
             return false;
@@ -71,25 +79,26 @@ public class Aplicacion implements IHM {
     }
 
     // Muestra la lista de hechos de nivel >0 y por orden decreciente de nivel
-    public void MostrarHechos(ArrayList<IHecho> hechos) {
-        String res = "Solución(s) encontrada(s) : \n"; 
-        Collections.sort(hechos,(IHecho f1, IHecho f2) -> {
-            return Integer.compare(f2.Nivel(), f1.Nivel());
-        });
-        for(IHecho f : hechos) {
-            if (f.Nivel() != 0) {
-                res += f.toString() + "\n";
+    public void mostrarHechos(ArrayList<IHecho> hechos) {
+        StringBuilder res = new StringBuilder("Solución(es) encontrada(s) : \n"); 
+        Collections.sort(hechos,(IHecho hecho1, IHecho hecho2) -> 
+             Integer.compare(hecho2.getNivel(), hecho1.getNivel())
+        );
+        for(IHecho hecho : hechos) {
+            if (hecho.getNivel() != 0) {
+                res.append(hecho.toString()).append("\n");
             }
         }
-        System.out.println(res);
+        
+        logger.info("{}", res);
     }
 
     // Muestra las reglas contenidas en la base
-    public void MostrarReglas(ArrayList<Regla> reglas) {
-        String res = "";
-        for(Regla r : reglas) {
-            res += r.toString() + "\n";
+    public void mostrarReglas(ArrayList<Regla> reglas) {
+    	StringBuilder res = new StringBuilder("");
+        for(Regla regla : reglas) {
+            res.append(regla.toString()).append("\n");
         }
-        System.out.println(res);
+        logger.info("{}", res);
     }
 }

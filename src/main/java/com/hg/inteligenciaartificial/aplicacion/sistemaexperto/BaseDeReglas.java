@@ -1,39 +1,40 @@
 package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Clase que gestiona la base de reglas
 class BaseDeReglas {
     // Lista de las reglas
-    protected ArrayList<Regla> reglas;
-    public ArrayList<Regla> getReglas() {
+    protected List<Regla> reglas;
+    public List<Regla> getReglas() {
        return reglas;
     }
-    public void setReglas(ArrayList<Regla> _reglas) {
+    public void setReglas(List<Regla> reglas) {
         // Se copia las reglas y se añaden
-        for (Regla r : _reglas) {
-            Regla copia = new Regla(r.nombre, r.premisas, r.conclusion);
-            reglas.add(copia);
+        for (Regla regla : reglas) {
+            Regla copia = new Regla(regla.nombre, regla.premisas, regla.conclusion);
+            this.reglas.add(copia);
         }
     }
    
     // Constructor
     public BaseDeReglas() { 
-        reglas = new ArrayList(); 
+        reglas = new ArrayList<>(); 
     } 
 
     // Eliminar las reglas
-    public void ClearBase() { 
+    public void clearBase() { 
         reglas.clear(); 
     } 
   
     // Agregar una regla a la base
-    public void AgregarRegla(Regla r) { 
+    public void agregarRegla(Regla r) { 
         reglas.add(r); 
     } 
   
     // Eliminar una regla
-    public void Eliminar(Regla r) { 
+    public void eliminar(Regla r) { 
         reglas.remove(r); 
     }
 }

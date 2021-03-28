@@ -25,14 +25,14 @@ class HechoFactory {
     
     // Crea un hecho entero
     static IHecho CrearHechoEntero(IHecho f, MotorInferencias m) {
-        int valor = m.PedirValorEntero(f.Pregunta());
-        return new HechoEntero(f.Nombre(), valor, null, 0);
+        int valor = m.pedirValorEntero(f.getPregunta());
+        return new HechoEntero(f.getNombre(), valor, null, 0);
     }
 
     // Crea un hecho booleano
     static IHecho CrearHechoBooleen(IHecho f, MotorInferencias m) {    
-        boolean valorB = m.PedirValorBooleano(f.Pregunta());
-        return new HechoBooleen(f.Nombre(), valorB, null, 0);
+        boolean valorB = m.pedirValorBooleano(f.getPregunta());
+        return new HechoBooleen(f.getNombre(), valorB, null, 0);
     }
 
     // Crea un nuevo hecho a partir de su cadena

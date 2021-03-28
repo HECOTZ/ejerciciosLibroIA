@@ -5,28 +5,28 @@ class HechoEntero implements IHecho {
 
     // Nombre del hecho
     protected String nombre;    
-    public String Nombre() {
+    public String getNombre() {
         return nombre;
     }
 
     // Valor entero asociado
     protected int valor;
-    public Object Valor() {
+    public Object getValor() {
         return valor;
     }
 
     // Nivel (0 para los hechos como entrada)
     protected int nivel;
-    public int Nivel() {
+    public int getNivel() {
         return nivel;
     }
-    public void setNivel(int l) {
-        nivel = l;
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
     
     // Pregunta que hay que hacer al usuario si es necesario
     protected String pregunta = "";
-    public String Pregunta() {
+    public String getPregunta() {
         return pregunta;
     }
 

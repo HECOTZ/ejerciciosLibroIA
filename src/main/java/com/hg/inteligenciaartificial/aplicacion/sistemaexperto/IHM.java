@@ -3,8 +3,8 @@ package com.hg.inteligenciaartificial.aplicacion.sistemaexperto;
 import java.util.ArrayList;
 
 public interface IHM {
-    int PedirValorEntero(String pregunta); 
-    boolean PedirValorBooleano(String pregunta); 
-    void MostrarHechos(ArrayList<IHecho> hechos); 
-    void MostrarReglas(ArrayList<Regla> reglas); 
+    int pedirValorEntero(String pregunta); 
+    boolean pedirValorBooleano(String pregunta); 
+    void mostrarHechos(ArrayList<IHecho> hechos); 
+    void mostrarReglas(ArrayList<Regla> reglas); 
 }
